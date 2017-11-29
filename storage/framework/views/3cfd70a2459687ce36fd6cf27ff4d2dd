@@ -1,0 +1,47 @@
+<?php $__env->startSection('content'); ?>
+<section class="col-sm-12">
+	<div class="card">
+	  	<div class="card-header">
+	    	Agregar archivo al boletin
+	  	</div>
+	  	<div class="card-body">
+	  		<?php if($errors->has()): ?>
+	  		<div class="alert alert-danger" role="alert">
+	  			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    	<span aria-hidden="true">&times;</span>
+			  	</button>
+		  		<ul>
+			   	<?php foreach($errors->all() as $message): ?>
+				    <li><?php echo e($message); ?></li>
+				<?php endforeach; ?>
+		  		</ul>
+	  		</div>
+	  		<?php endif; ?>
+		    <form method="POST" action="<?php echo e(URL::to('administrador/agregar-archivos/'.$id.'/enviar')); ?>" class="new-boletin-form" enctype="multipart/form-data">
+		    	<div class="col-sm-12">
+	    			<label>Idioma</label>
+		    		<select name="lang" class="form-control">
+				    	<?php foreach($langs as $l): ?>
+				    		<option value="<?php echo e($l->id); ?>" <?php if(old('lang') && old('lang') == $l->id): ?> selected <?php endif; ?>>
+				    			<?php echo e($l->names->first()->text); ?>
+
+				    		</option>
+				    	<?php endforeach; ?>
+		    		</select>
+		    	</div>
+		    	<div class="col-sm-12">
+		    		<label>Archivo</label>
+		    		<input type="file" class="form-control-file" name="file">
+		    	</div>
+				<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+			</form>
+			<button type="submit" class="btn btn-primary btn-send mt-2" data-target=".new-boletin-form">Enviar</button>
+	  	</div>
+	</div>
+</section>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('postscript'); ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

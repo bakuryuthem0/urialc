@@ -1,0 +1,5 @@
+<?php foreach($collection as $c): ?>
+	<?php if(count($c->names)): ?>
+		<option value="<?php echo e($c->id); ?>" class="optionResponse"><?php echo e($c->names->first()->text); ?></option>
+	<?php endif; ?>
+<?php endforeach; ?>

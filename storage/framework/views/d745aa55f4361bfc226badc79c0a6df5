@@ -1,0 +1,42 @@
+<?php $__env->startSection('content'); ?>
+<section class="col-sm-12">
+	<div class="card">
+	  	<div class="card-header">
+	    	Nuevo boletin
+	  	</div>
+	  	<div class="card-body">
+	  		<?php if($errors->has()): ?>
+	  		<div class="alert alert-danger" role="alert">
+	  			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    	<span aria-hidden="true">&times;</span>
+			  	</button>
+		  		<ul>
+			   	<?php foreach($errors->all() as $message): ?>
+				    <li><?php echo e($message); ?></li>
+				<?php endforeach; ?>
+		  		</ul>
+	  		</div>
+	  		<?php endif; ?>
+		    <form method="POST" action="<?php echo e(URL::to('administrador/nuevo-boletin/enviar')); ?>" class="new-boletin-form" enctype="multipart/form-data">
+		    	<div class="alert alert-info mb-2">
+		    		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		    		<i class="fa fa-info-circle"></i> Debe crear primero el titulo del boletin y luego subir los archivos por separados, esto para evitar problemas de subida cuando los archivos sean muy pesados.
+		    	</div>
+		    	<?php foreach($langs as $l): ?>
+		    	<div class="col-sm-12 mb-2">
+		    		<label>TitulW (<?php echo e($l->names->first()->text); ?>)</label>
+		    		<input type="text" class="form-control" name="title[<?php echo e($l->id); ?>]" placeholder="Titulo (<?php echo e($l->names->first()->text); ?>)" value="<?php echo e(old('title.'.$l->id)); ?>">	
+		    	</div>
+		    	<?php endforeach; ?>
+				<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+			</form>
+			<button type="submit" class="btn btn-primary btn-send mt-2" data-target=".new-boletin-form">Enviar</button>
+	  	</div>
+	</div>
+</section>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('postscript'); ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

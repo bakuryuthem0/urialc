@@ -1,0 +1,41 @@
+<?php $__env->startSection('content'); ?>
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <?php foreach($article->images as $i => $img): ?>
+      <li data-target="#carouselExampleIndicators" data-slide-to="<?php echo e($i); ?>" <?php if($img->id == $article->images->first()->id): ?> class="active" <?php endif; ?>></li>
+    <?php endforeach; ?>
+  </ol>
+  <div class="carousel-inner">
+    <?php foreach($article->images as $img): ?>
+    <div class="carousel-item <?php if($img->id == $article->images->first()->id): ?> active <?php endif; ?>">
+      <img class="d-block w-100" src="<?php echo e(asset('images/noticias/'.$article->id.'/'.$img->file)); ?>" alt="<?php echo e($article->titles->first()->text); ?>">
+    </div>
+    <?php endforeach; ?>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+<div id="fh5co-feature-title" class="fh5co-section-gray">
+  <div class="container">
+    <div class="row d-block pb-4 pt-4">
+      <div class="col-md-12 m-0 text-center heading-section">
+        <h3><?php echo e($article->titles->first()->text); ?></h3>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="fh5co-feature-description">
+  <div class="container">
+    <div class="row">
+      <p><?php echo $article->descriptions->first()->text; ?></p>
+    </div>
+  </div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

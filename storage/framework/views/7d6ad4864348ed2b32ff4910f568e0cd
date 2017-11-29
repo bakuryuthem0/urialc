@@ -1,0 +1,77 @@
+<?php $__env->startSection('postcss'); ?>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<section class="valign col-xs-12 col-md-8">
+	<div class="card">
+	  	<div class="card-header">
+	    	Nueva Sub-categoría
+	  	</div>
+	  	<div class="card-body">
+	  		<?php if($errors->has()): ?>
+	  		<div class="alert alert-danger" role="alert">
+	  			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    	<span aria-hidden="true">&times;</span>
+			  	</button>
+		  		<ul>
+			   	<?php foreach($errors->all() as $message): ?>
+				    <li><?php echo e($message); ?></li>
+				<?php endforeach; ?>
+		  		</ul>
+	  		</div>
+	  		<?php endif; ?>
+	  		<?php if(Session::has('success')): ?>
+	  		<div class="alert alert-success" role="alert">
+	  			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    	<span aria-hidden="true">&times;</span>
+			  	</button>
+		  		<?php echo e(Session::get('success')); ?>
+
+	  		</div>
+	  		<?php endif; ?>
+		    <form method="POST" action="<?php echo e(URL::to('administrador/modificar-subcategoria/'.$cat->id.'/enviar')); ?>" class="new-cat-form">
+		    	<div class="form-group">
+					<label for="catSelect">Categoría</label>
+						<select class="form-control js-example-basic-single" name="cat" id="catSelect">
+						<option value="">Seleccione una opción...</option>
+						<?php foreach($cats as $c): ?>
+							<option value="<?php echo e($c->id); ?>" <?php if($cat->cat_id == $c->id): ?> selected <?php endif; ?>>
+								<?php echo e($c->names->first()->text); ?>
+
+							</option>
+						<?php endforeach; ?>
+					</select>
+				</div>
+		    	<?php foreach($cat->names as $c): ?>
+				<div class="form-group">
+					<label for="categoryName<?php echo e($c->id); ?>">Nombre de la categoría (<?php echo e($c->langs->names->first()->text); ?>)</label>
+					<input 
+						type="text" 
+						name="name[<?php echo e($c->id); ?>]" 
+						class="form-control validate-input novalidate" 
+						id="categoryName<?php echo e($c->id); ?>" 
+						aria-describedby="emailHelp" 
+						placeholder="Nombre de la categoria (<?php echo e($c->langs->first()->names->first()->text); ?>)" 
+						data-name="Nombre de la categoria (<?php echo e($c->langs->first()->names->first()->text); ?>)" 
+						value="<?php echo e($c->text); ?>">
+				</div>
+				<?php endforeach; ?>
+				<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+			</form>
+			<button type="submit" class="btn btn-primary btn-send" data-target=".new-cat-form">Enviar</button>
+	  	</div>
+	</div>
+</section>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('postscript'); ?>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		
+		$('.js-example-basic-single').select2();
+	});
+</script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

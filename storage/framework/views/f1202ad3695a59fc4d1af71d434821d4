@@ -1,0 +1,72 @@
+<?php $__env->startSection('content'); ?>
+<section class="valign col-xs-12 col-md-8">
+	<div class="card">
+	  	<div class="card-header">
+	    	Nueva categoría
+	  	</div>
+	  	<div class="card-body">
+	  		<?php if($errors->has()): ?>
+	  		<div class="alert alert-danger" role="alert">
+	  			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    	<span aria-hidden="true">&times;</span>
+			  	</button>
+		  		<ul>
+			   	<?php foreach($errors->all() as $message): ?>
+				    <li><?php echo e($message); ?></li>
+				<?php endforeach; ?>
+		  		</ul>
+	  		</div>
+	  		<?php endif; ?>
+		    <form method="POST" action="<?php echo e(URL::to('administrador/nueva-categoria/enviar')); ?>" class="new-cat-form">
+		    	<div class="form-group">
+		    		<label>Mostrar en menu</label>
+		    		<input type="checkbox" name="active" value="1" class="switch">
+		    	</div>
+		    	<?php foreach($langs as $l): ?>
+				<div class="form-group">
+					<label for="categoryName<?php echo e($l->id); ?>">Nombre de la categoría (<?php echo e($l->names->first()->text); ?>)</label>
+					<input 
+						type="text" 
+						name="name[<?php echo e($l->id); ?>]" 
+						class="form-control validate-input novalidate" 
+						id="categoryName<?php echo e($l->id); ?>" 
+						aria-describedby="emailHelp" 
+						placeholder="Nombre de la categoria (<?php echo e($l->names->first()->text); ?>)" 
+						data-name="Nombre de la categoria (<?php echo e($l->names->first()->text); ?>)" 
+						value="<?php echo e(old('name.'.$l->id)); ?>">
+				</div>
+				<?php endforeach; ?>
+				<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+			</form>
+			<button type="submit" class="btn btn-primary btn-send" data-target=".new-cat-form">Enviar</button>
+	  	</div>
+	</div>
+</section>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('postscript'); ?>
+
+<link rel="stylesheet" type="text/css" href="<?php echo e(asset('plugins/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css')); ?>">
+<script type="text/javascript" src="<?php echo e(asset('plugins/bootstrap-switch/dist/js/bootstrap-switch.min.js')); ?>"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $(".switch").bootstrapSwitch({
+      state   : false,
+      onText  : 'Si',
+      offText : 'No',
+      size    : 'small'
+    });
+  });
+</script>
+	<?php if($errors->has()): ?>
+	  <script type="text/javascript">
+	  jQuery(document).ready(function($) {
+	    $('.mySwitch').each(function(index, el) {
+	      if ($(el).is(':checked')) {
+	        $(el).bootstrapSwitch('toggleState');
+	      };
+	    });
+	  });
+	  </script>
+	<?php endif; ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

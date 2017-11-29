@@ -1,0 +1,52 @@
+@import "variables.scss";
+@mixin fullScreen()
+{
+	width: 100%;
+  height: 100vh;
+}
+@mixin initialPos()
+{
+	top: 0;
+	left: 0;
+}
+@mixin centerPos()
+{
+	top: 50%;
+  left: 50%;
+}
+@mixin horizontalCenter()
+{
+	display: block;
+    margin: 0 auto;
+}
+@mixin transitions($type)
+{
+	-webkit-transition: $type;
+     -moz-transition: $type;
+      -ms-transition: $type;
+       -o-transition: $type;
+          transition: $type;
+}
+@mixin transforms($type)
+{
+	-webkit-transform: $type;
+     -moz-transform: $type;
+      -ms-transform: $type;
+       -o-transform: $type;
+          transform: $type;
+}
+@mixin transform_origins($type)
+{
+	-webkit-transform-origin: $type;
+    -moz-transform-origin: $type;
+    -ms-transform-origin: $type;
+    transform-origin: $type;
+}
+@mixin animate($type)
+{
+  -webkit-animation: $type;
+       -moz-animation: $type;
+        -ms-animation: $type;
+         -o-animation: $type;
+            animation: $type;
+}

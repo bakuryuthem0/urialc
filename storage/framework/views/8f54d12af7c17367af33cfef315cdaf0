@@ -1,0 +1,61 @@
+<?php $__env->startSection('content'); ?>
+<section class="col-sm-12">
+	<div class="card">
+	  	<div class="card-header">
+	    	Nuevo banner principal
+	  	</div>
+	  	<div class="card-body">
+	  		<?php if($errors->has()): ?>
+	  		<div class="alert alert-danger" role="alert">
+	  			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    	<span aria-hidden="true">&times;</span>
+			  	</button>
+		  		<ul>
+			   	<?php foreach($errors->all() as $message): ?>
+				    <li><?php echo e($message); ?></li>
+				<?php endforeach; ?>
+		  		</ul>
+	  		</div>
+	  		<?php endif; ?>
+		    <form method="POST" action="<?php echo e(URL::to('administrador/nuevo-banner/enviar')); ?>" class="new-banner-form" enctype="multipart/form-data">
+		    	<div class="col-sm-12 mb-2">
+		    		<label>Titulo (opcional)</label>
+		    		<input type="text" class="form-control" name="title" placeholder="Titulo">	
+		    	</div>
+		    	<div class="col-sm-12 mb-2">
+		    		<label>URL (opcional)</label>
+		    		<input type="text" class="form-control" name="url" placeholder="URL">	
+		    	</div>
+		    	<div class="col-sm-12 mb-2">
+		    		<label>Idioma</label>
+		    		<select class="form-control" name="lang">
+		    			<?php foreach($langs as $l): ?>
+		    				<option value="<?php echo e($l->id); ?>"><?php echo e($l->names->first()->text); ?></option>
+		    			<?php endforeach; ?>
+		    		</select>
+		    	</div>
+		    	<div class="col-sm-12 mb-2">
+		    		<label>Banner</label>
+		    		<input type="file" class="form-control-file" name="file" size="1000">	
+		    	</div>
+		    	<div class="col-sm-12 mb-2">
+		    		<div class="alert alert-info ">
+			    		<i class="fa fa-info-circle"></i> Es recomendable enviar una version del banner para dispositivos moviles.
+			    	</div>
+			    </div>
+		    	<div class="col-sm-12 mb-2">
+		    		<label>Banner Movil (opcional)</label>
+		    		<input type="file" class="form-control-file" name="file_mobil" size="1000">	
+		    	</div>
+				<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+			</form>
+			<button type="submit" class="btn btn-primary btn-send mt-2" data-target=".new-banner-form">Enviar</button>
+	  	</div>
+	</div>
+</section>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('postscript'); ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

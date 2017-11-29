@@ -1,0 +1,204 @@
+@import "variables.scss";
+@import "mixins.scss";
+.body
+{
+  @include transitions(all .35s ease-in-out);
+  &.menu-active
+  {
+    @include transforms(translateX(-$menuWidth));
+  }
+}
+.valign
+{
+	position: absolute;
+	@include centerPos();
+	@include transforms(translate(-50%, -50%));
+}
+
+.navbar
+{
+    margin-bottom: 3em;
+}
+.responseAjax, .responseActive
+{
+	display: none;
+	&.active, &.active
+	{
+		display: block;
+	}
+}
+.miniLoader
+{
+	display: none;
+	&.active
+	{
+		margin-right: 15px;
+		display: inline-block;
+	}
+}
+.fade
+{
+	&.in
+	{
+		opacity: 1;
+	}
+}
+.banner-preview
+{
+	max-width: 200px;
+}
+.carousel-indicators 
+{
+	li
+	{
+		background-color: rgba(50, 50, 50, 0.5);
+		&.active
+		{
+			background-color: rgba(0, 0, 0, 0.5);
+		}
+	}
+
+}
+.carousel-control-prev
+{
+	.carousel-control-prev-icon {
+	    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23333' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+	}
+}
+.carousel-control-next{
+	.carousel-control-next-icon {
+	    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23333' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+	}
+}
+.fh5co-nav-toggle
+{
+	top: 25%;
+	@include transforms(translateY(-100%));
+	@media(min-width: 769px){
+		top:50%;
+		@include transforms(translateY(-50%));
+	}
+}
+.navigation
+{
+	right: 0;
+	z-index: -1;
+	width: $menuWidth;
+	height: 100vh;
+	position: fixed;
+}
+#fh5co-page
+{
+	z-index: 1;
+	background-color: #fff;
+}
+.navigation
+{
+	&.is-visible
+	{
+		z-index: 1000;
+	}
+	.fa
+	{
+		cursor: pointer;
+	}
+}
+.heading-section p
+{
+	font-size: 16px;
+	@media(min-width: 767px){
+		font-size: 20px;
+	}
+}
+.miniLoader
+{
+	display: none;
+	width: 15px;
+	&.active{
+		display: inline-block;
+	}
+}
+.fh5co-overlay
+{
+	&.overly
+	{
+		background-color: rgba(0,0,0,0.5);
+	}
+}
+.fh5co-team
+{
+	height: 445px;
+	> div.description
+	{
+		height: 250px;
+	}
+}
+.text-section
+{
+	p
+	{
+		font-size: 20px;
+	}
+	small
+	{
+		font-size: larger;
+	}
+}
+.fh5co-blog
+{
+	.img-container
+	{
+		height: 300px;
+		overflow: hidden;
+	}
+}
+.first-element
+{
+	margin-top: 10em;
+}
+.news-container
+{
+	box-shadow: 1px 2px 17px -8px black;
+	h3
+	{
+		@media(max-width: 425px){
+			font-size: 20px;
+		}
+	}
+	p
+	{
+		@media(max-width: 425px){
+			font-size: 14px;
+		}	
+	}
+}
+.banner
+{
+	h1
+	{
+		@media(max-width: 425px)
+		{
+			font-size: 28px
+		}
+	}
+}
+.fb-share-button
+{
+	> span,
+	{
+		vertical-align: top !important;
+	}
+}
+#twitter-widget-0
+{
+	vertical-align: top !important;
+}
+b, strong
+{
+	font-weight: bold !important;
+}
+
+#fh5co-header-section
+{
+	background-color: #fff;
+}

@@ -1,0 +1,46 @@
+<?php $__env->startSection('content'); ?>
+	<div class="container first-element">
+		<div class="col-sm-12 banner">
+			<h1 class="text-sm-center"><?php echo e($cat->names->first()->text); ?></h1>
+		</div>
+		<div class="col-sm-12 p-0 clearfix">
+			<?php if(count($cat->subnames) > 0): ?>
+				<div class="col-sm-12 col-md-3  float-left">
+					<h3><?php echo e($cat->names->first()->text); ?></h3>
+					<div class="list-group">
+						<?php foreach($cat->subnames as $sn): ?>
+					  		<button type="button" class="list-group-item list-group-item-action" >
+					  			<?php echo e($sn->names->first()->text); ?>
+
+					  		</button>
+						<?php endforeach; ?>
+					</div>
+				</div>
+			<?php endif; ?>
+			<div class="col-sm-12 <?php if(count($cat->subnames) > 0): ?> col-md-9 <?php endif; ?> float-right">
+				<?php foreach($articles as $a): ?>
+				<div class="row mb-4 p-4 news-container">
+					<div class="col-sm-12 col-md-4 d-flex align-items-center">
+						<a href="<?php echo e(URL::to('noticias/ver-noticias/'.$a->slugs->first()->text)); ?>">
+							<img src="<?php echo e(asset('images/noticias/'.$a->id.'/'.$a->images->first()->file)); ?>" class="img-fluid">
+						</a>
+					</div>
+					<div class="col-sm-12 col-md-8 d-flex align-items-center">
+						<div class="container">
+							<h3 class="text-truncate mt-4"><?php echo e($a->titles->first()->text); ?></h3>
+
+							<p class="text-justify"><?php echo substr(strip_tags($a->descriptions->first()->text),0,300); ?>...</p>
+							<a href="<?php echo e(URL::to('noticias/ver-noticias/'.$a->slugs->first()->text)); ?>"><?php echo e(trans('lang.read_more')); ?>...</a>
+						</div>
+					</div>
+				</div>
+				<?php endforeach; ?>
+			</div>
+			<div class="clearfix"></div>
+			<div class="col-sm-12">
+				<?php echo $__env->make('partials.pagination', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+			</div>
+		</div>
+	</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
