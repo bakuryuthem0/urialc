@@ -44,7 +44,7 @@
 		    	<div class="col-sm-6 mb-2">
 		    		<img src="{{ asset('images/banners/phone/'.$banner->phone) }}" class="img-fluid">
 		    		<label>Banner</label>
-		    		<input type="file" class="form-control-file" name="file">	
+		    		<input type="file" class="form-control-file" name="file_mobil">	
 		    	</div>
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			</form>
