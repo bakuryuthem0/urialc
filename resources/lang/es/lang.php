@@ -35,10 +35,11 @@
 		'menu_btn7'							=> 'Contacto',
 		'menu_btn8'							=> 'Festival',
 		'youtube_channel'					=> 'Canal de YouTube',
+		'calendar'							=> 'Calendario',
 		'go_youtube_channel'				=> 'Ir al canal de YouTube',
 		'urialc'							=> 'URIALC',
 		'urial_desc'						=> 'En América Latina y el Caribe, la URI está conformada por 48 Círculos de Cooperación en Argentina, Brasil, Bolivia, Chile, Ecuador, El Salvador, Guatemala, Haití, México, Paraguay, Panamá, Perú, Uruguay y Venezuela. El trabajo comprende la diversidad cultural, social y religiosa y las grandes enseñanzas de las cosmovisiones indígenas, y promueve los siguientes valores para generar la cooperación interreligiosa en la región: circularidad, solidaridad, sostenibilidad, cuidado, transparencia, abundancia, confianza y responsabilidad mutua, permanente espíritu de alegría y ternura; y sensibilidad hacia el discernimiento para el bien común.',
-	
+		'donate'							=> "¡Dona!",
 		//home
 		'index_title'						=> 'Inicio',
 		'cc_title'							=> 'Círculos de Cooperación',
@@ -296,6 +297,21 @@
 									            <p align="justify"><span lang="ES-VE">La Coordinación Regional de URI para América Latina y El Caribe en la segunda edición del Festival Internacional  &ldquo;UNA CANCION POR LA PAZ&rdquo; 2017, otorgará el <strong>PREMIO FACUNDO CABRAL</strong> para </span><span lang="ES-VE">honrar a este canta-autor  designado Mensajero Mundial de la Paz por la UNESCO en 1996, y activar su legado de lecciones cantadas o declamadas en nombre del amor, del aprecio a la vida, de la fe y la buena voluntad humana, el diálogo y la tolerancia.</span></p>
 									            <p><span lang="ES-VE"> </span></p>
 									            <p align="justify"><span lang="ES-VE">Facundo Cabral </span><span lang="ES">fue un juglar de nuestros días, un cantor que expresaba espontáneamente sus pensamientos, todo aquel que escucha su canto y su poesía, inevitablemente se conecta con los sueños y con la esperanza. </span><span lang="ES"> </span><span lang="ES">Se le conoce en el mundo entero por sus composiciones de trova y sus monólogos, y por el anecdotario de sus encuentros con personalidades diversas, sus parábolas, alegorías y oraciones, inspiradoras del despertar de conciencia y de la reflexión espiritual. Sus palabras y su mensaje constituyen símbolos estimulantes para las generaciones actuales que tienen que asumir el reto de trascender las fronteras religiosas y culturales para construir la Cultura de Paz en el mundo.</span></p>',
-
+        //dona
+		'first_step'							=> 'Da el primer paso',							           
+		'name'									=> 'Nombre',
+		'lastname'								=> 'Apellido',
+		'email'									=> 'Email',
+		'phone'									=> 'Telefono',
+		'select_project'						=> 'Seleccione un proyecto',
+		'projects'								=> 'Proyectos',
+		'payment_method'						=> 'Seleccione Forma de Pago',
+		'web_form'								=> 'Formulario WEB',
+		'reference_number'						=> 'Numero de referencia',
+		'paypal'								=> 'PayPal',
+		'authorize'								=> 'Autorizo que se comuniquen conmigo',
+		'send'									=> 'Enviar',
+		'why'									=> 'POR QU&Eacute; DONAR A URIALC?',
+		'because'								=> 'Con tu donativo a URI Am&eacute;rica Latina y El Caribe est&aacute;s ayudando a que muchos de nuestros sue&ntilde;os y proyectos se hagan realidad.&nbsp; Agradecemos todos los aportes que recibimos de particulares, familias, escuelas, empresas, clubes y organizaciones porque apoyan el trabajo de nuestros C&iacute;rculos de Cooperaci&oacute;n en beneficio de la calidad de vida en nuestras comunidades, el cuidado de los ambientes naturales y &nbsp;la construcci&oacute;n de una Cultura de Paz para la sana coexistencia procurando un futuro mejor para nuestros ni&ntilde;os y j&oacute;venes y para toda la humanidad.',
 
 	];

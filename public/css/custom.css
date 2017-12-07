@@ -52,6 +52,21 @@
 .carousel-control-next .carousel-control-next-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23333' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E"); }
 
+.carousel-item:not(.modalish) {
+  height: 500px; }
+  @media (min-width: 375px) and (max-width: 424px) {
+    .carousel-item:not(.modalish) {
+      height: 590px; } }
+  @media (min-width: 425px) and (max-width: 767px) {
+    .carousel-item:not(.modalish) {
+      height: 670px; } }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .carousel-item:not(.modalish) {
+      height: 315px; } }
+  @media (min-width: 1024) {
+    .carousel-item:not(.modalish) {
+      height: 420px; } }
+
 .fh5co-nav-toggle {
   top: 25%;
   -webkit-transform: translateY(-100%);
@@ -137,5 +152,22 @@
 
 b, strong {
   font-weight: bold !important; }
+
+#fh5co-header-section {
+  background-color: #fff; }
+
+.btn-donate {
+  position: absolute;
+  top: 50%;
+  right: 40px;
+  background-color: #7cb940;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%); }
+
+.modal-lg {
+  max-width: 95% !important; }
 
 /*# sourceMappingURL=custom.css.map */

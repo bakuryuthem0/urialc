@@ -61,9 +61,16 @@ Route::group(['middleware' => ['auth']],function(){
 	Route::get('administrador/nuevo-banner','BannerController@getNewBanner');
 	Route::get('administrador/ver-banners','BannerController@getShowBanners');
 	Route::get('administrador/ver-banners/{id}','BannerController@getMdfBanner');
+	Route::get('administrador/nuevo-banner-donacion','BannerController@getNewBannerDonation');
+	Route::get('administrador/ver-banners-donaciones','BannerController@getShowBannersDonations');
+	Route::get('administrador/ver-banners-donacion/{id}','BannerController@getMdfBannerDonation');
 	Route::post('administrador/nuevo-banner/enviar','BannerController@postNewBanner');
 	Route::post('administrador/modificar-banner/{id}/enviar','BannerController@postMdfBanner');
 	Route::post('administrador/ver-banners/eliminar','BannerController@postElimBanner');
+
+	Route::post('administrador/nuevo-banner-donacion/enviar','BannerController@postNewBannerDonation');
+	Route::post('administrador/modificar-banner-donacion/{id}/enviar','BannerController@postMdfBannerDonation');
+	Route::post('administrador/ver-banners-donaciones/eliminar','BannerController@postElimBannerDonation');
 	Route::get('admin/ver-imagen','NewsController@checkImages');
 	//boletin
 	Route::get('administrador/nuevo-boletin','BoletinController@getNewBoletin');

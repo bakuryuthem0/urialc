@@ -2,8 +2,10 @@
 
 use urialc\Language as Language;
 use urialc\Banner as Banner;
+use urialc\DonationBanner as DonationBanner;
 
 use Libraries\FileController as FileController;
+use Libraries\LangController as LangController;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -142,6 +144,107 @@ class BannerController extends Controller {
 		return response()->json([
 			'type' => 'success',
 			'msg'  => 'Se ha eliminado el banner satisfactoriamente.'
+		]);
+
+	}
+	public function getNewBannerDonation()
+	{
+		$langs = Language::with('names')->get();
+		$title = "Nuevo banner donacion | Urialc";
+		return view('admin.banners.donations.new')
+		->with('langs',$langs)
+		->with('title',$title);	
+	}
+	public function postNewBannerDonation(Request $request)
+	{
+		$langs = Language::with('names')->get();
+
+		$data = $request->all();
+		$rules = [
+			'title'	=> 'required|min:1',
+			'file'	=> 'required|image',
+		];
+		$msg   = [];
+		$attr  = [
+			'title' => 'idiomas',
+			'file'	=> 'banner',
+		];
+
+		foreach ($langs as $l) {
+			$rules['title.'.$l->id] = 'sometimes|min:1';
+			$attr['title.'.$l->id]  = 'título ('.$l->names->first()->text.')';				
+		}
+		$validator = Validator::make($data, $rules, $msg, $attr);
+		if ($validator->fails()) {
+			return redirect()->back()->withErrors($validator)->withInput();
+		}
+		$langCtrl = new LangController;
+
+		$banner = new DonationBanner;
+		
+		$translation      = $langCtrl::newTranslation();
+		$langCtrl::newEntry($langs, $translation, $data, 'title');
+		$banner->title       = $translation;
+
+		if ($request->hasFile('file')) {
+			$file = $request->file('file');
+			$banner->image 	      = FileController::upload_image($file, $file->getClientOriginalName(), 'images/banners/', 'image', 1440, 800);
+		}
+		$banner->save();
+		Session::flash('success', 'Se ha guardado el nuevo banner de donaciones satisfactoriamente.');
+		return redirect('administrador/ver-banners-donaciones');
+	}
+	public function getShowBannersDonations()
+	{
+		$title = "Ver banners donaciones | urialc";
+		$banners = DonationBanner::with('titles')->get();
+		return view('admin.banners.donations.show')
+		->with('title',$title)
+		->with('banners',$banners);
+	}
+	public function getMdfBannerDonation($id)
+	{
+		$langs = Language::with('names')->get();
+
+		$title = "Modificar banner de donaciones | urialc";
+		$banner = DonationBanner::with('titles')
+		->find($id);
+		return view('admin.banners.donations.mdf')
+		->with('title',$title)
+		->with('langs',$langs)
+		->with('banner',$banner);
+	}
+	public function postMdfBannerDonation($id, Request $request)
+	{
+		$langs = Language::with('names')->get();
+
+		$data = $request->all();
+		$langCtrl = new LangController;
+		
+		$langCtrl::mdfEntry($langs, $data, 'title');
+		
+		if ($request->hasFile('file')) {
+			$banner = DonationBanner::find($id);
+			$file = $request->file('file');
+			$banner->image 	      = FileController::upload_image($file, $file->getClientOriginalName(), 'images/banners/', 'image', 1440, 800);			
+			$banner->save();
+		}
+		Session::flash('success', 'Se ha modificado el banner de donaciones satisfactoriamente.');
+		return redirect()->back();
+	}
+	public function postElimBannerDonation(Request $request)
+	{
+		$file = new File;
+		$id = $request->input('id');
+
+		$banner = DonationBanner::find($id);
+		$file->delete(public_path('images/banners/'.$banner->image));
+		LangController::deleteEntry($banner->title);
+		$banner->delete();
+
+		return response()->json([
+			'type' => 'success',
+			'msg'  => 'Se ha eliminado el banner de donaciones satisfactoriamente.'
 		]);
 
 	}

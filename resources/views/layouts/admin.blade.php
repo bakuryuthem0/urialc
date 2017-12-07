@@ -51,11 +51,14 @@
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownNews" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Banner principal
+              Banners
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownNews">
-              <a class="dropdown-item" href="{{ URL::to('administrador/nuevo-banner') }}">Nuevo banner</a>
-              <a class="dropdown-item" href="{{ URL::to('administrador/ver-banners') }}">Ver banners</a>
+              <a class="dropdown-item" href="{{ URL::to('administrador/nuevo-banner') }}">Nuevo banner principal</a>
+              <a class="dropdown-item" href="{{ URL::to('administrador/ver-banners') }}">Ver banners pricipales</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{ URL::to('administrador/nuevo-banner-donacion') }}">Nuevo banner donación</a>
+              <a class="dropdown-item" href="{{ URL::to('administrador/ver-banners-donaciones') }}">Ver banners donaciones</a>
             </div>
           </li>
           <li class="nav-item dropdown">

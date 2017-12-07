@@ -158,8 +158,11 @@
         <header id="fh5co-header-section" class="sticky-banner clearfix">
           <div class="container">
             <div class="nav-header">
+              <button class="btn btn-xs btn-donate" data-toggle="modal" data-target="#donate-modal">{{ trans('lang.donate') }}</button>
               <a href="#!" class="fh5co-nav-toggle dark d-block menu-btn"><i></i></a>
-              <h1 id="fh5co-logo" class="d-inline align-middle float-none"><a href="{{ URL::to('/') }}"><img src="{{ asset('images/logo.jpg') }}"></a></h1>
+              <h1 id="fh5co-logo" class="d-inline align-middle float-none">
+                <a href="{{ URL::to('/') }}"><img src="{{ asset('images/logo.jpg') }}"></a>
+              </h1>
               <!-- START #fh5co-menu-wrap -->
             </div>
           </div>
@@ -189,7 +192,105 @@
       <!-- END fh5co-page -->
     </div>
   <!-- END fh5co-wrapper -->
-
+    <!-- Modal -->
+    <div class="modal fade" id="donate-modal">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header align-items-center">
+            <img src="{{ asset('images/logo.jpg') }}" class="float-left">
+            <h4 class="modal-title float-right">
+              <strong>Tu ayuda fortalece nuestras esperanzas</strong>
+            </h4>
+          </div>
+          <div class="modal-body row">
+            <div class="col-sm-12 col-md-6">
+              <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                  @foreach($project::getDonateBanners() as $i => $b)
+                  <li data-target="#carouselExampleIndicators2" data-slide-to="{{ $i }}" @if($b->id == $project::getDonateBanners()->first()->id) class="active" @endif></li>
+                  @endforeach
+                </ol>
+                <div class="carousel-inner">
+                  @foreach($project::getDonateBanners() as $b)
+                  <div class="carousel-item modalish @if($b->id == $project::getDonateBanners()->first()->id) active @endif">
+                    <picture>
+                      <source media="(max-width: 767px)" srcset="{{ asset('images/banners/'.$b->image) }}">
+                      <img src="{{ asset('images/banners/'.$b->image) }}" class="img-fluid mx-auto d-block" alt="{{ $b->titles->first() ? $b->titles->first()->text : $title }}">
+                    </picture>
+                  </div>
+                  @endforeach
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators2" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <h2>{{ trans('lang.first_step') }}<b>!</b></h2>                            
+              <!--<p>D&eacute;janos tus datos</p>-->
+              <form id="frm1" name="frm1" method="post" action="{{ URL::to('/') }}" role="form">
+                  <input type="hidden" id="pais" name="pais" value="3">
+                  <input type="hidden" id="source" name="source" value="google">
+                  <div class="form-group">
+                      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="{{ trans('lang.name') }}" required="">
+                  </div>
+                  <div class="form-group">
+                      <input type="text" class="form-control" id="apellido" name="apellido" placeholder="{{ trans('lang.lastname') }}" required="">
+                  </div>
+                  <div class="form-group">
+                      <input type="email" class="form-control" id="email" name="email" placeholder="{{ trans('lang.email') }}" required="">
+                  </div>
+                  <div class="form-group">
+                      <input type="text" class="form-control" id="telefono" name="telefono" placeholder="{{ trans('lang.phone') }}" minlength="7" maxlength="9" smk-type="number" required="">
+                  </div>
+                  <div class="form-group">
+                      <label class="control-label" for="" style="color:#333;">{{ trans('lang.select_project') }}</label>
+                      <select id="proyecto" name="proyecto" class="form-control">
+                          <option value="" selected disabled>{{ trans('lang.projects') }}</option>
+                          @foreach($project::getDonateBanners() as $b)
+                          <option value="{{ str_replace(' ','-',$b->titles->first()->tex) }}">
+                            {{ $b->titles->first()->text }}
+                          </option>
+                          @endforeach                                
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <!--<label class="control-label" for="formInput1">Forma de Pago</label>-->
+                      <select id="forma_pago" name="forma_pago" class="form-control">
+                          <option value="">{{ trans('lang.payment_method') }}</option>
+                          <option value="web">{{ trans('lang.web_form') }}</option>
+                          <option value="paypal">{{ trans('lang.paypal') }}</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <input type="text" class="form-control" id="telefono" name="reference_number" placeholder="{{ trans('lang.reference_number') }}" required="">
+                  </div>
+                  <div class="checkbox">
+                      <label class="control-label">
+                          <input type="checkbox" id="permiso" name="permiso" required=""><small style="font-size: 13px;">{{ trans('lang.authorize') }}</small>
+                      </label>
+                  </div>
+                  <input class="btn btn-success center-block" type="button" id="btnenviar" name="btnenviar" value="{{ trans('lang.send') }}">
+                  <input type="hidden" id="btnclose" name="btnclose" data-dismiss="modal">
+              </form>
+            </div>
+            <div class="col-sm-12 mb-2 mt-4">
+              <div class="card">
+                <div class="card-header bg-success">
+                  <span style="color:#fff;">{{ trans('lang.why') }}</span>
+                </div>
+                <p class="p-2">{{ trans('lang.because') }}</p>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
   <!-- jQuery -->
 
   <script

@@ -2,6 +2,7 @@
 	namespace Libraries;
 
 	use urialc\Category as Category;
+	use urialc\DonationBanner as DonationBanner;
 
 	use \stdClass;
 	use Libraries\LangController as LangController;
@@ -32,6 +33,17 @@
 			->where('in_menu','=',1)
 			->orderBy('id','ASC')
 			->get();
+		}
+		public static function getDonateBanners()
+		{
+			$lang = LangController::getActiveLang();
+			$banner = DonationBanner::with('titles')
+			->whereHas('titles',function($titles) use ($lang){
+				$titles->where('lang_id','=',$lang->id);
+			})
+			->get();
+
+			return $banner;
 		}
 		public static function getPaginateData($collection)
 		{

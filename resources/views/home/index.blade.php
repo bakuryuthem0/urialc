@@ -12,7 +12,7 @@
     <div class="carousel-item @if($b->id == $banners->first()->id) active @endif">
       <picture>
         <source media="(max-width: 767px)" srcset="{{ asset('images/banners/phone/'.$b->phone) }}">
-        <img src="{{ asset('images/banners/'.$b->desktop) }}" class="img-fluid mx-auto" alt="{{ $b->title ? $b->title : $title }}">
+        <img src="{{ asset('images/banners/'.$b->desktop) }}" class="img-fluid mx-auto d-block" alt="{{ $b->title ? $b->title : $title }}">
       </picture>
     </div>
     @endforeach
@@ -148,5 +148,18 @@
 
       </div>
     </div>
-    
+    <div id="fh5co-blog-section" class="fh5co-section-gray">
+      <div class="container">
+        <div class="row">
+          <div class="d-block mx-auto heading-section animate-box">
+            <h3 class="text-center">{{ trans('lang.calendar') }}</h3>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row row-bottom-padded-md">
+          <iframe src="https://calendar.google.com/calendar/embed?title=URI&amp;height=320&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=festivalcancionporlapaz%40gmail.com&amp;color=%231B887A&amp;ctz=America%2FCaracas" style="width:100%;border-width:0;margin-left:10px;margin-top:10px" height="320" frameborder="0" scrolling="no"></iframe>
+        </div>
+      </div>
+    </div>
 @stop
