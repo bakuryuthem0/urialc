@@ -40,7 +40,7 @@
 
 		'urialc'							=> 'URIALC',
 		'urial_desc'						=> 'In Latin America and the Caribbean, the URI is made up of 48 Cooperation Circles in Argentina, Brazil, Bolivia, Chile, Ecuador, El Salvador, Guatemala, Haiti, Mexico, Paraguay, Panama, Peru, Uruguay and Venezuela. The work includes cultural, social and religious diversity and the great teachings of indigenous worldviews, and promotes the following values ​​to generate interreligious cooperation in the region: circularity, solidarity, sustainability, care, transparency, abundance, trust and mutual responsibility, permanent spirit of joy and tenderness; and sensitivity towards discernment for the common good.',
-		'donate'							=> "Donate!",
+		'donate'							=> "Contribute with us!",
 		//home
 		'index_title'						=> 'Home',
 		'cc_title'							=> 'Cooperation Circles',

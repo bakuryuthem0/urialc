@@ -39,7 +39,7 @@
 		'go_youtube_channel'				=> 'Ir al canal de YouTube',
 		'urialc'							=> 'URIALC',
 		'urial_desc'						=> 'En América Latina y el Caribe, la URI está conformada por 48 Círculos de Cooperación en Argentina, Brasil, Bolivia, Chile, Ecuador, El Salvador, Guatemala, Haití, México, Paraguay, Panamá, Perú, Uruguay y Venezuela. El trabajo comprende la diversidad cultural, social y religiosa y las grandes enseñanzas de las cosmovisiones indígenas, y promueve los siguientes valores para generar la cooperación interreligiosa en la región: circularidad, solidaridad, sostenibilidad, cuidado, transparencia, abundancia, confianza y responsabilidad mutua, permanente espíritu de alegría y ternura; y sensibilidad hacia el discernimiento para el bien común.',
-		'donate'							=> "¡Dona!",
+		'donate'							=> "Haz tu aporte!",
 		//home
 		'index_title'						=> 'Inicio',
 		'cc_title'							=> 'Círculos de Cooperación',
