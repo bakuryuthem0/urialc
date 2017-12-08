@@ -36,11 +36,23 @@
 		    			@endforeach
 		    		</select>
 		    	</div>
+		    	<div class="col-sm-12 mb-2">
+		    		<div class="alert alert-info ">
+			    		<i class="fa fa-info-circle"></i> La resolucion recomendada para las imagenes es de <strong>1080px * 445px</strong> <small>(ancho * largo)</small> o que mantenga esta relacion. <strong>Ej 2160px * 890px</strong> ...
+			    	</div>
+			    </div>
 		    	<div class="col-sm-6 mb-2">
 		    		<img src="{{ asset('images/banners/'.$banner->desktop) }}" class="img-fluid">
 		    		<label>Banner</label>
 		    		<input type="file" class="form-control-file" name="file">	
 		    	</div>
+				<div class="col-sm-12 mb-2">
+		    		<div class="alert alert-info ">
+			    		<i class="fa fa-info-circle"></i> Es recomendable enviar una version del banner para dispositivos moviles.
+			    		<br>
+			    		La resolucion recomendada para las imagenes es de <strong>470px * 740px</strong> <small>(ancho * largo)</small> o que mantenga esta relacion. <strong>Ej 940px * 1480px</strong> ...
+			    	</div>
+			    </div>
 		    	<div class="col-sm-6 mb-2">
 		    		<img src="{{ asset('images/banners/phone/'.$banner->phone) }}" class="img-fluid">
 		    		<label>Banner</label>
