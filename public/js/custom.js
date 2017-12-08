@@ -28,6 +28,22 @@ function successActivate (response, btn) {
 		});
 	}
 }
+function beforeSend (btn) {
+	removeResponseAjax();
+	btn.prevAll('.miniLoader').addClass('active');
+	btn.addClass('disabled').attr('disabled',true);
+}
+function successSend (response, btn) {
+	btn.prevAll('.miniLoader').removeClass('active');
+	btn.removeClass('disabled').attr('disabled', false);
+	if (response.type == 'success') {
+		hideModalContent(btn);
+	}else
+	{
+		$('.responseAjax').addClass('active').addClass('alert-danger')
+		responseMsg(response);
+	}
+}
 jQuery(document).ready(function($) {
 	$('.btn-send').on('click', function(event) {
 		var btn = $(this);
@@ -98,5 +114,25 @@ jQuery(document).ready(function($) {
 			id: btn.val()
 		};
 		doAjax(btn.data('url'), 'GET', 'json', dataPost, btn, beforeActivate, successActivate, endSelectLoadAjax);
+	});
+	$('.btn-donate-modal').on('click', function(event) {
+		var btn = $(this);
+		var dataPost = {
+			name             :$('.name').val(),
+			lastname         :$('.lastname').val(),
+			email            :$('.email').val(),
+			phone            :$('.phone').val(),
+			project          :$('.project').val(),
+			payment_method   :$('.payment_method').val(),
+			reference_number :$('.reference_number').val()
+		};
+		if ($('.authorize').is(':checked')) {
+			dataPost['authorize'] = 1;
+		}
+		doAjax(btn.data('url'), 'POST', 'json', dataPost, btn, beforeSend, successSend, ajaxError);
+	});
+	$('#donate-modal').on('hidden.bs.modal', function(event) {
+		shoModalContent();
+		removeResponseAjax();
 	});
 });

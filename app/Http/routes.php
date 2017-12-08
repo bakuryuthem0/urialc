@@ -18,7 +18,7 @@ Route::get('noticias/busqueda/{type}','SearchController@getSearch');
 Route::get('noticias/busqueda/{type}/{subcat}','SearchController@getSearch');
 Route::get('inicio/contactenos','HomeController@getContact');
 Route::get('inicio/festival','HomeController@getFestival');
-
+Route::post('enviar-donacion','HomeController@getNewDonation');
 Route::get('cambiar-lenguaje/{lang}',function($lang){
 	Session::put('locale', $lang);
 	return redirect()->back();

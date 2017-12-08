@@ -1,6 +1,7 @@
 <?php namespace urialc\Http\Controllers;
 
 use urialc\Banner as Banner;
+use urialc\Donation as Donation;
 use urialc\Article as Article;
 use urialc\Language as Language;
 use urialc\Category as Category;
@@ -9,7 +10,11 @@ use urialc\Category as Category;
 use Libraries\LangController as LangController;
 use Libraries\ProjectController as ProjectController;
 use Libraries\YoutubeVideos as YoutubeVideos;
+
 use Illuminate\Support\Facades\Session;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Response;
 
 
 class HomeController extends Controller {
@@ -124,5 +129,56 @@ class HomeController extends Controller {
 		->with('lang',$lang)
 		->with('project',$project)
 		->with('title',$title);
+	}
+	public function getNewDonation(Request $request)
+	{
+		$data = $request->all();
+		$rules = [
+			'name'				=> 'required|min:1|max:60',
+			'lastname'			=> 'required|min:1|max:60',
+			'email'				=> 'required|email|max:100',
+			'phone'				=> 'required|min:1|max:20',
+			'project'			=> 'required|max:100',
+			'payment_method'	=> 'required|max:100',
+			'reference_number'	=> 'sometimes|max:100',
+
+		];
+		$msg  = [];
+
+		$attr = [
+			'name'				=> 'name',
+			'lastname'			=> 'apellido',
+			'phone'				=> 'telefono',
+			'project'			=> 'proyecto',
+			'payment_method'	=> 'metodo de pago',
+			'reference_number'	=> 'numero de referencia',
+		];
+		$validator = Validator::make($data, $rules, $msg, $attr);
+		if ($validator->fails()) {
+			return response()->json(array(
+				'type' => 'danger',
+				'msg'  => $validator->getMessageBag()
+			));
+		}
+		$donation = new Donation;
+		$donation->name 			= $data['name'];
+		$donation->lastname 		= $data['lastname'];
+		$donation->email 			= $data['email'];
+		$donation->phone 			= $data['phone'];
+		$donation->project 			= $data['project'];
+		$donation->payment_method 	= $data['payment_method'];
+		$donation->reference_number = $data['reference_number'];
+		if ($request->has('authorize')) {
+			$donation->authorize = 1;
+		}else
+		{
+			$donation->authorize = 0;
+		}
+		$donation->save();
+
+		return response()->json([
+			'type' => 'success',
+			'msg'  => 'Se ha registrado su donación satisfactoriamente'
+		]);
 	}
 }

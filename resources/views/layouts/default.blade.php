@@ -7,10 +7,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>{{ $title }}</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
-  <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
-  <meta name="author" content="FREEHTML5.CO" />
+  <meta name="description" content="{!! strip_tags(trans('lang.about_text1')) !!}" />
+  <meta name="author" content="urialc.org" />
 
   <!-- 
   //////////////////////////////////////////////////////
@@ -195,7 +195,7 @@
     <!-- Modal -->
     <div class="modal fade" id="donate-modal">
       <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
+        <div class="modal-content hide-after-load">
           <div class="modal-header align-items-center">
             <img src="{{ asset('images/logo.jpg') }}" class="float-left">
             <h4 class="modal-title float-right">
@@ -203,6 +203,9 @@
             </h4>
           </div>
           <div class="modal-body row">
+            <div class="col-sm-12">
+              <div class="alert responseAjax"><p></p></div>
+            </div>
             <div class="col-sm-12 col-md-6">
               <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
@@ -233,51 +236,52 @@
             <div class="col-sm-12 col-md-6">
               <h2>{{ trans('lang.first_step') }}<b>!</b></h2>                            
               <!--<p>D&eacute;janos tus datos</p>-->
-              <form id="frm1" name="frm1" method="post" action="{{ URL::to('/') }}" role="form">
-                  <input type="hidden" id="pais" name="pais" value="3">
-                  <input type="hidden" id="source" name="source" value="google">
-                  <div class="form-group">
-                      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="{{ trans('lang.name') }}" required="">
-                  </div>
-                  <div class="form-group">
-                      <input type="text" class="form-control" id="apellido" name="apellido" placeholder="{{ trans('lang.lastname') }}" required="">
-                  </div>
-                  <div class="form-group">
-                      <input type="email" class="form-control" id="email" name="email" placeholder="{{ trans('lang.email') }}" required="">
-                  </div>
-                  <div class="form-group">
-                      <input type="text" class="form-control" id="telefono" name="telefono" placeholder="{{ trans('lang.phone') }}" minlength="7" maxlength="9" smk-type="number" required="">
-                  </div>
-                  <div class="form-group">
-                      <label class="control-label" for="" style="color:#333;">{{ trans('lang.select_project') }}</label>
-                      <select id="proyecto" name="proyecto" class="form-control">
-                          <option value="" selected disabled>{{ trans('lang.projects') }}</option>
-                          @foreach($project::getDonateBanners() as $b)
-                          <option value="{{ str_replace(' ','-',$b->titles->first()->tex) }}">
-                            {{ $b->titles->first()->text }}
-                          </option>
-                          @endforeach                                
-                      </select>
-                  </div>
-                  <div class="form-group">
-                      <!--<label class="control-label" for="formInput1">Forma de Pago</label>-->
-                      <select id="forma_pago" name="forma_pago" class="form-control">
-                          <option value="">{{ trans('lang.payment_method') }}</option>
-                          <option value="web">{{ trans('lang.web_form') }}</option>
-                          <option value="paypal">{{ trans('lang.paypal') }}</option>
-                      </select>
-                  </div>
-                  <div class="form-group">
-                      <input type="text" class="form-control" id="telefono" name="reference_number" placeholder="{{ trans('lang.reference_number') }}" required="">
-                  </div>
-                  <div class="checkbox">
-                      <label class="control-label">
-                          <input type="checkbox" id="permiso" name="permiso" required=""><small style="font-size: 13px;">{{ trans('lang.authorize') }}</small>
-                      </label>
-                  </div>
-                  <input class="btn btn-success center-block" type="button" id="btnenviar" name="btnenviar" value="{{ trans('lang.send') }}">
-                  <input type="hidden" id="btnclose" name="btnclose" data-dismiss="modal">
-              </form>
+              <input type="hidden" id="pais" name="pais" value="3">
+              <input type="hidden" id="source" name="source" value="google">
+              <div class="form-group">
+                  <input type="text" class="form-control name" id="nombre" name="nombre" placeholder="{{ trans('lang.name') }}" required="">
+              </div>
+              <div class="form-group">
+                  <input type="text" class="form-control lastname" id="apellido" name="apellido" placeholder="{{ trans('lang.lastname') }}" required="">
+              </div>
+              <div class="form-group">
+                  <input type="email" class="form-control email" id="email" name="email" placeholder="{{ trans('lang.email') }}" required="">
+              </div>
+              <div class="form-group">
+                  <input type="text" class="form-control phone" id="telefono" name="telefono" placeholder="{{ trans('lang.phone') }}" minlength="7" maxlength="9" smk-type="number" required="">
+              </div>
+              <div class="form-group">
+                  <label class="control-label" for="" style="color:#333;">{{ trans('lang.select_project') }}</label>
+                  <select id="proyecto" name="proyecto" class="form-control project">
+                      <option value="">{{ trans('lang.projects') }}</option>
+                      @foreach($project::getDonateBanners() as $b)
+                      <option value="{{ str_replace(' ','-', $b->titles->first()->text) }}">
+                        {{ $b->titles->first()->text }}
+                      </option>
+                      @endforeach                                
+                  </select>
+              </div>
+              <div class="form-group">
+                  <!--<label class="control-label" for="formInput1">Forma de Pago</label>-->
+                  <select id="forma_pago" name="forma_pago" class="form-control payment_method">
+                      <option value="">{{ trans('lang.payment_method') }}</option>
+                      <option value="web">{{ trans('lang.web_form') }}</option>
+                      <option value="paypal">{{ trans('lang.paypal') }}</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <input type="text" class="form-control reference_number" id="reference" name="reference_number" placeholder="{{ trans('lang.reference_number') }}" required="">
+              </div>
+              <div class="checkbox">
+                  <label class="control-label">
+                      <input type="checkbox" id="permiso" name="permiso" required=""><small style="font-size: 13px;">{{ trans('lang.authorize') }}</small>
+                  </label>
+              </div>
+              <input type="hidden" id="btnclose" name="btnclose" data-dismiss="modal">
+              <img src="{{ asset('images/loader.gif') }}" class="miniLoader">
+              <button class="btn btn-success btn-donate-modal" data-url="{{ URL::to('enviar-donacion') }}">
+                {{ trans('lang.send') }}
+              </button>
             </div>
             <div class="col-sm-12 mb-2 mt-4">
               <div class="card">
@@ -288,6 +292,15 @@
               </div>
             </div>
           </div>
+      </div>
+      <div class="modal-content show-after-load invisible">
+        <div class="jumbotron text-center">
+            <h1>{{ trans('lang.success') }}!</h1>
+            <p class="lead">{{ trans('lang.success_text') }}.</p>
+            
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+        </div>
       </div>
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->

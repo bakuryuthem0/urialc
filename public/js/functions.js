@@ -18,6 +18,15 @@ function initDataTable () {
 function getRootUrl () {
   return $('.baseUrl').val();
 }
+function hideModalContent (btn) {
+	$('.show-after-load').removeClass('invisible');
+	$('.hide-after-load').addClass('visible');
+	btn.val('');
+}
+function shoModalContent () {
+	$('.show-after-load').addClass('visible');
+	$('.hide-after-load').removeClass('invisible');
+}
 function activeteStatus (inp,toAdd, toRemove) {
 	inp.addClass(toAdd).removeClass(toRemove);
 }

@@ -313,5 +313,6 @@
 		'send'									=> 'Enviar',
 		'why'									=> 'POR QU&Eacute; DONAR A URIALC?',
 		'because'								=> 'Con tu donativo a URI Am&eacute;rica Latina y El Caribe est&aacute;s ayudando a que muchos de nuestros sue&ntilde;os y proyectos se hagan realidad.&nbsp; Agradecemos todos los aportes que recibimos de particulares, familias, escuelas, empresas, clubes y organizaciones porque apoyan el trabajo de nuestros C&iacute;rculos de Cooperaci&oacute;n en beneficio de la calidad de vida en nuestras comunidades, el cuidado de los ambientes naturales y &nbsp;la construcci&oacute;n de una Cultura de Paz para la sana coexistencia procurando un futuro mejor para nuestros ni&ntilde;os y j&oacute;venes y para toda la humanidad.',
-
+		'success'								=> 'Registro completo',
+		'success_text'							=> 'Gracias!, el registro de su donación se ha completado satisfactoriamente',
 	];

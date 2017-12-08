@@ -310,5 +310,6 @@
 		'send'									=> 'Send',
 		'why'									=> 'WHY DONATE TO URIALC?',
 		'because'								=> 'With your donation to URI Latin America and the Caribbean you are helping many of our dreams and projects come true. We appreciate all the contributions we receive from individuals, families, schools, companies, clubs and organizations because they support the work of our Cooperation Circles in benefit of the quality of life in our communities, the care of natural environments and the construction of a Culture Of Peace for  healthy coexistence looking for a better future for our children and young people and for all of humanity.',
-
+		'success'								=> 'Donation complete',
+		'success_text'							=> 'Thank you! Your donation has been successfully processed.',
 	];
