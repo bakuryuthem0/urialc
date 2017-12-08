@@ -47,6 +47,7 @@ class AuthController extends Controller {
 		if (Auth::attempt($auth, $remember)) {
 			return redirect('administrador');
 		}
+		Session::flash('danger','Error, usuario o contraseña incorrectos');
 		return redirect()->back();
 	}
 	public function logout()

@@ -20,6 +20,12 @@
 		  		</ul>
 	  		</div>
 	  		@endif
+	  		@if(Session::has('danger'))
+	  		<div class="alert alert-danger">
+	  			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	  			<p>{{ Session::get('danger') }}</p>
+	  		</div>
+	  		@endif
 		    <form method="POST" action="{{ URL::to('administrador/login/enviar') }}">
 				<div class="form-group">
 					<label for="exampleInputEmail1">Nombre de usuario</label>
