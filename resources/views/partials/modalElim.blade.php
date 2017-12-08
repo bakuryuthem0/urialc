@@ -19,7 +19,7 @@
       <div class="modal-footer">
         <img src="{{ asset('images/loader.gif') }}" class="miniLoader">
         <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-danger btn-elim">Enviar</button>
+        <button type="button" class="btn btn-danger btn-elim">Eliminar</button>
       </div>
     </div>
   </div>

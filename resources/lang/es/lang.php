@@ -48,7 +48,7 @@
 		'read_all'							=> 'Leer todas',
 		//about us
 		'whatsuri_title'					=> 'Qué es URI',
-		'about_title1'						=> 'Que es URI',
+		'about_title1'						=> 'Qué es URI',
 		'about_text1'						=> '<strong>URI</strong> fue fundada en el año 2000, la Iniciativa de las Religiones Unidas es una organización internacional cuyo propósito es promover una cooperación interreligiosa diaria y perdurable, acabar con la violencia por motivos religiosos y crear culturas de paz, justicia y sanación para la Tierra y todos los seres vivos
 												<br><br>
  
